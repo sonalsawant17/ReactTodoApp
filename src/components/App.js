@@ -8,22 +8,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      todoStatusFlag: null,
       todoItemList: [],
-      selectedFilter: null,
       filteredList: []
     }
   }
 
-  updateFilteredList(updatedTodoList) {
-
+  updateTodoList(updatedTodoList) {
     var updatedFilteredList = [];
 
-    if (this.state.selectedFilter === null) {
+    if (this.state.todoStatusFlag === null) {
       updatedFilteredList = updatedTodoList;
     } else {
-      updatedFilteredList = updatedTodoList.filter(item => {
-        if (item.status === this.state.selectedFilter) {
-          return item;
+      updatedFilteredList = updatedTodoList.filter(todoItem => {
+        if (todoItem.status === this.state.todoStatusFlag) {
+          return todoItem;
         }
       });
     }
@@ -42,11 +41,10 @@ class App extends Component {
       status: false
     };
     this.state.todoItemList.push(todoItem);
-    this.updateFilteredList(this.state.todoItemList);
+    this.updateTodoList(this.state.todoItemList);
   }
 
-  updateTodo(updatedTodoItem) {
-
+  updateTodoStatus(updatedTodoItem) {
     var updatedTodoList = this.state.todoItemList.map(todoItem => {
       if (todoItem.id === updatedTodoItem.id) {
         todoItem.status = true;
@@ -54,15 +52,14 @@ class App extends Component {
       return todoItem;
     });
 
-    this.updateFilteredList(updatedTodoList);
+    this.updateTodoList(updatedTodoList);
   }
 
-  updateFilter(filter) {
-
+  updateTodoListByStatus(statsFlag) {
     this.setState({
-      selectedFilter: filter
+      todoStatusFlag: statsFlag
     }, () => {
-      this.updateFilteredList(this.state.todoItemList);
+      this.updateTodoList(this.state.todoItemList);
     });
   }
 
@@ -73,10 +70,10 @@ class App extends Component {
         <TodoTextField addTodo={this.addTodo.bind(this)} />
         <br />
         <br />
-        <TodoList todoList={this.state.filteredList} updateTodo={this.updateTodo.bind(this)} />
+        <TodoList todoList={this.state.filteredList} updateTodoStatus={this.updateTodoStatus.bind(this)} />
         <br />
         <br />
-        <Footer todoList={this.state.filteredList} updateFilter={this.updateFilter.bind(this)} />
+        <Footer todoList={this.state.filteredList} updateTodoListByStatus={this.updateTodoListByStatus.bind(this)} />
       </div>
     );
   }

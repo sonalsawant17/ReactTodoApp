@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Button extends Component {
 
     onClickCallback = () => {
-        this.props.updateFilter(this.props.updateFlag);
+        this.props.updateTodoListByStatus(this.props.todoStatusFlag);
     }
 
     render() {

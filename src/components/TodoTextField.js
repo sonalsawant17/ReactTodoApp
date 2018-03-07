@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 class TodoTextField extends Component {
     
     addTodoCallback = (event) => {
-        console.log("Inside addTodo");
         if (event.key === 'Enter') {
-            console.log("Inside addTodo - if");
             this.props.addTodo(event.target.value);
         }
     }

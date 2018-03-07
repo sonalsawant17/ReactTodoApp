@@ -10,9 +10,9 @@ class Footer extends Component {
       <div className="Footer">
         <footer className="App-footer">
           <ItemCountLabel count={this.props.todoList.length}/>
-          <Button name={"All"} updateFlag={null} updateFilter={this.props.updateFilter}/>
-          <Button name={"Active"} updateFlag={false} updateFilter={this.props.updateFilter}/>
-          <Button name={"Completed"} updateFlag={true} updateFilter={this.props.updateFilter}/>
+          <Button name={"All"} todoStatusFlag={null} updateTodoListByStatus={this.props.updateTodoListByStatus}/>
+          <Button name={"Active"} todoStatusFlag={false} updateTodoListByStatus={this.props.updateTodoListByStatus}/>
+          <Button name={"Completed"} todoStatusFlag={true} updateTodoListByStatus={this.props.updateTodoListByStatus}/>
         </footer>
       </div>
     );

@@ -9,7 +9,7 @@ class TodoList extends Component {
                     {
                         this.props.todoList.map(todoItem => {
                             return (
-                                <li key={todoItem.id} onClick={() => this.props.updateTodo(todoItem)}>
+                                <li key={todoItem.id} onClick={() => this.props.updateTodoStatus(todoItem)}>
                                     <input type="checkbox" defaultChecked={todoItem.status} />
                                     <span className={todoItem.status ? "completed" : ""} > {todoItem.text} </span>
                                 </li>
